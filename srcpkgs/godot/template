@@ -1,6 +1,6 @@
 # Template file for 'godot'
 pkgname=godot
-version=2.1.4
+version=3.0
 revision=1
 wrksrc="${pkgname}-${version}-stable"
 build_style=scons
@@ -24,9 +24,9 @@ nocross="https://build.voidlinux.eu/builders/armv7l_builder/builds/6342/steps/sh
 CFLAGS+=" -fPIE -fPIC"
 LDFLAGS+=" -pie"
 
-post_extract() {
-	sed -i -e "/openssl_version =/,+4d" platform/x11/detect.py
-}
+#post_extract() {
+#	sed -i -e "/openssl_version =/,+4d" platform/x11/detect.py
+#}
 
 do_install() {
 	vlicense LICENSE.txt
