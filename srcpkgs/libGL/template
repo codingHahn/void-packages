@@ -1,7 +1,7 @@
 # Template build file for 'libGL'.
 pkgname=libGL
-version=17.3.3
-revision=3
+version=18.0.0
+revision=1
 wrksrc="mesa-${version}"
 build_style=gnu-configure
 configure_args="--enable-shared-glapi --enable-gbm
@@ -13,7 +13,7 @@ maintainer="Juan RP <xtraeme@voidlinux.eu>"
 homepage="http://www.mesa3d.org/"
 license="MIT, LGPL-2.1"
 distfiles="https://mesa.freedesktop.org/archive/mesa-${version}.tar.xz"
-checksum=41bac5de0ef6adc1f41a1ec0f80c19e361298ce02fa81b5f9ba4fdca33a9379b
+checksum=694e5c3d37717d23258c1f88bc134223c5d1aac70518d2f9134d6df3ee791eea
 
 hostmakedepends="
  automake libtool flex pkg-config llvm python-Mako libxml2-python
