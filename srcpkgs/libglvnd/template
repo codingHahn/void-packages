@@ -1,0 +1,17 @@
+# Template file for 'libglvnd'
+pkgname=libglvnd
+version=1.0.0
+revision=1
+maintainer="Marcio Giaxa <i@mgxm.me>"
+license="Proprietary NVIDIA license"
+homepage="https://github.com/NVIDIA/libglvnd"
+build_style=gnu-configure
+short_desc="The GL Vendor-Neutral Dispatch library"
+hostmakedepends="automake libtool pkg-config"
+makedepends="libXext-devel libX11-devel xorgproto"
+distfiles="https://github.com/NVIDIA/libglvnd/archive/v$version.tar.gz"
+checksum="d1cb238081f8fc708178f21e7e6b33a009c0807eae7a11b790146043f6e8eea5"
+
+pre_configure() {
+	              ./autogen.sh
+}
