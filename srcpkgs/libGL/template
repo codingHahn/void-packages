@@ -19,11 +19,12 @@ hostmakedepends="
  automake libtool flex pkg-config llvm python-Mako libxml2-python
  $(vopt_if wayland 'wayland-protocols wayland-devel')"
 makedepends="
- libglvnd xorgproto libatomic-devel libXext-devel libXxf86vm-devel
+ libglvnd-devel xorgproto libatomic-devel libXext-devel libXxf86vm-devel
  eudev-libudev-devel libdrm-devel expat-devel talloc-devel libvdpau-devel libva-devel
  libXdamage-devel libXvMC-devel libxshmfence-devel
  $(vopt_if wayland 'wayland-protocols wayland-devel')
  elfutils-devel ncurses-devel zlib-devel libffi-devel"
+depends="libglvnd libGL"
 conf_files="/etc/drirc"
 
 # Package build options
@@ -33,7 +34,7 @@ build_options="wayland"
 build_options_default="wayland"
 
 # Set subpackages manually to set proper rdeps in 32bit pkgs.
-subpackages="libglapi libgbm libEGL libGLES libOSMesa $(vopt_if wayland libwayland-egl)"
+subpackages="libglapi libgbm libEGL libOSMesa $(vopt_if wayland libwayland-egl)"
 
 case "$XBPS_TARGET_MACHINE" in
 i686*|x86_64*)
@@ -97,6 +98,8 @@ post_install() {
 	vlicense docs/license.html
 	vmkdir usr/lib/xorg/modules/extensions
 	ln -s libglx-xorg.so ${DESTDIR}/usr/lib/xorg/modules/extensions/libglx.so
+  ln -s libGLX_mesa.so.0 ${DESTDIR}/usr/lib/libGLX_indirect.so.0
+  rm -v ${DESTDIR}/usr/lib/libGLESv{1_CM,2}.so*
 	if [ -d "$DESTDIR/usr/lib32" ]; then
 		mv "$DESTDIR/usr/lib32/d3d" "$DESTDIR/usr/lib"
 		mv "$DESTDIR/usr/lib32/pkgconfig"/* "$DESTDIR/usr/lib/pkgconfig"
@@ -146,7 +149,7 @@ MesaLib-devel_package() {
 		libXext-devel libXxf86vm-devel libXdamage-devel expat-devel
 		libXfixes-devel libX11-devel libxcb-devel libdrm-devel>=2.4.39
 		libGL>=${version}_${revision}
-		libGLES>=${version}_${revision} libEGL>=${version}_${revision}
+		libEGL>=${version}_${revision}
 		libOSMesa>=${version}_${revision} libgbm>=${version}_${revision}
 		$(vopt_if wayland "libwayland-egl>=${version}_${revision}")"
 	case "$XBPS_TARGET_MACHINE" in
@@ -212,7 +215,7 @@ mesa-vc4-dri_package() {
 }
 mesa-opencl_package() {
 	short_desc="Mesa implementation of OpenCL (r600+ only)"
-	depends="libclc libOpenCL"
+	depends="libglvnd libclc libOpenCL"
 	pkg_install() {
 		vmove etc/OpenCL
 		vmove "usr/lib/lib*OpenCL*"
