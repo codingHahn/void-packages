@@ -136,10 +136,7 @@ libGL.so.1 catalyst-libs-14.2_1
 libGL.so.1 nvidia-libs-346.47_1
 libGL.so.1 nvidia304-libs-304.00_1
 libGL.so.1 nvidia340-libs-340.46_1
-libGLdispatch.so.0 libglvnd-1.0.0_1
-libGLESv1_CM.so.1 libglvnd-1.0.0_1
 libGLX.so.0 libglvnd-1.0.0_1
-libGLESv2.so.2 libglvnd-1.0.0_1
 libOpenGL.so.0 libglvnd-1.0.0_1
 libGL.so.1 libglvnd-1.0.0_1
 libEGL.so.1 libglvnd-1.0.0_1

@@ -5,6 +5,7 @@ revision=1
 build_style=gnu-configure
 hostmakedepends="automake libtool pkg-config"
 makedepends="libXext-devel libX11-devel xorgproto"
+depends="libXext libGL libEGL mesa-opencl"
 short_desc="The GL Vendor - Neutral Dispatch library"
 maintainer="Marcio Giaxa <i@mgxm.me>"
 homepage="https://github.com/NVIDIA/libglvnd"
@@ -16,9 +17,14 @@ pre_configure() {
 	./autogen.sh
 }
 
+post_install() {
+  vlicense ${FILESDIR}/LICENSE
+}
+
 libglvnd-devel_package() {
 	depends="${sourcepkg}>=${version}_${revision}"
 	short_desc+=" - development files"
+  provides="libEGL-${version}_${revision} libGL-${version}_${revision} libGLES-${version}_${revision}"
 	pkg_install() {
 		vmove usr/include
 		vmove usr/lib/pkgconfig
