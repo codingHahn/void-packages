@@ -62,11 +62,10 @@ do_install() {
 	# GLX extension module for X
 	vinstall libglx.so.${version} 755 usr/lib/nvidia/xorg
 	ln -sf libglx.so.${version} ${DESTDIR}/usr/lib/nvidia/xorg/libglx.so.1
-  ln -sf libglx.so.${version} ${DESTDIR}/usr/lib/nvidia/xorg/libglx.so
+	ln -sf libglx.so.${version} ${DESTDIR}/usr/lib/nvidia/xorg/libglx.so
 
 	# GLX client libs
 	if [ "${build_option_glvnd}" ]; then
-
 		# Required for GLVND option
 		vinstall libGLX_nvidia.so.${version} 755 usr/lib
 		ln -sf libGLX_nvidia.so.${version} ${DESTDIR}/usr/lib/libGLX_nvidia.so.0

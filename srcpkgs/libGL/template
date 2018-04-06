@@ -98,8 +98,8 @@ post_install() {
 	vlicense docs/license.html
 	vmkdir usr/lib/xorg/modules/extensions
 	ln -s libglx-xorg.so ${DESTDIR}/usr/lib/xorg/modules/extensions/libglx.so
-  ln -s libGLX_mesa.so.0 ${DESTDIR}/usr/lib/libGLX_indirect.so.0
-  rm -v ${DESTDIR}/usr/lib/libGLESv{1_CM,2}.so*
+	ln -s libGLX_mesa.so.0 ${DESTDIR}/usr/lib/libGLX_indirect.so.0
+	rm -v ${DESTDIR}/usr/lib/libGLESv{1_CM,2}.so*
 	if [ -d "$DESTDIR/usr/lib32" ]; then
 		mv "$DESTDIR/usr/lib32/d3d" "$DESTDIR/usr/lib"
 		mv "$DESTDIR/usr/lib32/pkgconfig"/* "$DESTDIR/usr/lib/pkgconfig"
